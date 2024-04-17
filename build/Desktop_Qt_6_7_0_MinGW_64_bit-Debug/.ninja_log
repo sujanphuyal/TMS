@@ -1,0 +1,24 @@
+# ninja log v5
+11	605	7350375489108236	TMS_autogen/timestamp	d19976580cac0f39
+11	605	7350375489108236	TMS_autogen/mocs_compilation.cpp	d19976580cac0f39
+11	605	7350375489108236	C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/TMS_autogen/mocs_compilation.cpp	d19976580cac0f39
+535	2332	7350368567893270	CMakeFiles/TMS.dir/src/views/scheduler.cpp.obj	ec5713eda251bcf3
+608	2810	7350375511651388	CMakeFiles/TMS.dir/app/tmsapp.cpp.obj	a7d4f2e1b13e2775
+11	605	7350375489108236	C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/TMS_autogen/timestamp	d19976580cac0f39
+623	2550	7350362880319018	CMakeFiles/TMS.dir/src/views/dashboard.cpp.obj	878fd469b10e0647
+618	2562	7350362880349073	CMakeFiles/TMS.dir/app/main.cpp.obj	8c92116778df88f1
+605	2955	7350375513071924	CMakeFiles/TMS.dir/TMS_autogen/mocs_compilation.cpp.obj	3b2bb709e6a0cee4
+2955	3330	7350375516790233	TMS.exe	12a937d28ce14e4d
+610	2792	7350375511471371	CMakeFiles/TMS.dir/src/views/hourtracker.cpp.obj	67015c7c26a54109
+11	567	7350377997025981	TMS_autogen/timestamp	d19976580cac0f39
+11	567	7350377997025981	TMS_autogen/mocs_compilation.cpp	d19976580cac0f39
+11	567	7350377997025981	C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/TMS_autogen/timestamp	d19976580cac0f39
+11	567	7350377997025981	C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/TMS_autogen/mocs_compilation.cpp	d19976580cac0f39
+570	2603	7350378017900523	CMakeFiles/TMS.dir/src/views/timeclock.cpp.obj	76baa2d30a4e1b56
+567	2697	7350378018845690	CMakeFiles/TMS.dir/TMS_autogen/mocs_compilation.cpp.obj	3b2bb709e6a0cee4
+11	169	7350378365778533	TMS_autogen/timestamp	d19976580cac0f39
+11	169	7350378365778533	TMS_autogen/mocs_compilation.cpp	d19976580cac0f39
+11	169	7350378365778533	C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/TMS_autogen/timestamp	d19976580cac0f39
+11	169	7350378365778533	C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/TMS_autogen/mocs_compilation.cpp	d19976580cac0f39
+181	2097	7350378385066007	CMakeFiles/TMS.dir/app/tmsapp.cpp.obj	a7d4f2e1b13e2775
+2098	2333	7350378387376377	TMS.exe	3c5114f9f36f281f
