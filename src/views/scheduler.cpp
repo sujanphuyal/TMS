@@ -1,54 +1,60 @@
 #include "Scheduler.h"
-#include <QTextCharFormat>
-#include <QDebug>
+#include <QFileDialog>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QFile>
 
 Scheduler::Scheduler(QWidget *parent) : QWidget(parent) {
     setupUI();
+    loadShifts();  // Load shifts from file or database on startup
 }
 
 void Scheduler::setupUI() {
-    QVBoxLayout *layout = new QVBoxLayout(this);
+    auto *layout = new QVBoxLayout(this);
     calendar = new QCalendarWidget(this);
-    calendar->setFirstDayOfWeek(Qt::Monday);
+    calendar->setSelectionMode(QCalendarWidget::SelectionMode::SingleSelection);
+    connect(calendar, &QCalendarWidget::clicked, this, &Scheduler::shiftSelected);
     layout->addWidget(calendar);
 
     addShiftButton = new QPushButton("Add New Shift", this);
-    layout->addWidget(addShiftButton);
     connect(addShiftButton, &QPushButton::clicked, this, &Scheduler::addShiftDialog);
+    layout->addWidget(addShiftButton);
 }
 
 void Scheduler::addShiftDialog() {
-    QDialog *dialog = new QDialog(this);
-    dialog->setWindowTitle("Add New Shift");
+    QDialog dialog(this);
+    dialog.setWindowTitle("Add New Shift");
+    QFormLayout formLayout(&dialog);
 
-    QFormLayout *formLayout = new QFormLayout(dialog);
-    QLineEdit *jobTitleEdit = new QLineEdit(dialog);
-    QDateTimeEdit *startTimeEdit = new QDateTimeEdit(dialog);
-    startTimeEdit->setCalendarPopup(true);
-    QDateTimeEdit *endTimeEdit = new QDateTimeEdit(dialog);
-    endTimeEdit->setCalendarPopup(true);
+    QLineEdit jobTitleEdit;
+    QDateTimeEdit startTimeEdit;
+    startTimeEdit.setCalendarPopup(true);
+    QDateTimeEdit endTimeEdit;
+    endTimeEdit.setCalendarPopup(true);
 
-    formLayout->addRow("Job Title:", jobTitleEdit);
-    formLayout->addRow("Start Time:", startTimeEdit);
-    formLayout->addRow("End Time:", endTimeEdit);
+    formLayout.addRow("Job Title:", &jobTitleEdit);
+    formLayout.addRow("Start Time:", &startTimeEdit);
+    formLayout.addRow("End Time:", &endTimeEdit);
 
-    QPushButton *saveButton = new QPushButton("Save", dialog);
-    connect(saveButton, &QPushButton::clicked, [this, dialog, jobTitleEdit, startTimeEdit, endTimeEdit]() {
-        Shift newShift { jobTitleEdit->text(), startTimeEdit->dateTime(), endTimeEdit->dateTime() };
+    QPushButton saveButton("Save", &dialog);
+    formLayout.addWidget(&saveButton);
+    connect(&saveButton, &QPushButton::clicked, [&]() {
+        Shift newShift { jobTitleEdit.text(), startTimeEdit.dateTime(), endTimeEdit.dateTime() };
         if (!newShift.jobTitle.isEmpty()) {
-            this->saveShift(newShift);
-            dialog->accept();
+            saveShift(newShift);
+            dialog.accept();
         } else {
-            QMessageBox::warning(dialog, "Input Error", "Please enter a job title.");
+            QMessageBox::warning(&dialog, "Input Error", "Please enter a job title.");
         }
     });
 
-    formLayout->addWidget(saveButton);
-    dialog->setLayout(formLayout);
-    dialog->exec();
+    dialog.setLayout(&formLayout);
+    dialog.exec();
 }
 
 void Scheduler::saveShift(const Shift& newShift) {
+    // Check for conflicts before adding the shift
     for (const auto &shift : shifts) {
         if (shift.startTime < newShift.endTime && newShift.startTime < shift.endTime) {
             QMessageBox::critical(this, "Shift Conflict", "This shift overlaps with another. Please choose a different time.");
@@ -56,30 +62,116 @@ void Scheduler::saveShift(const Shift& newShift) {
         }
     }
     shifts.append(newShift);
+    saveShifts();
     updateCalendarView();
 }
 
 void Scheduler::updateCalendarView() {
-    resetAllDateTextFormats();
+    // Update the calendar display for shifts
+    QTextCharFormat format;
+    format.setBackground(Qt::yellow);
     for (const auto &shift : shifts) {
-        QTextCharFormat format;
-        format.setBackground(Qt::yellow);  // Highlight days with shifts
         calendar->setDateTextFormat(shift.startTime.date(), format);
     }
 }
 
-void Scheduler::resetDateTextFormat(const QDate& date) {
-    QTextCharFormat defaultFormat;  // Default, no formatting
-    calendar->setDateTextFormat(date, defaultFormat);
+void Scheduler::shiftSelected(const QDate &date) {
+    // Find shifts for the selected date
+    QVector<int> shiftIndexes;
+    for (int i = 0; i < shifts.size(); ++i) {
+        if (shifts[i].startTime.date() == date) {
+            shiftIndexes.append(i);
+        }
+    }
+
+    if (!shiftIndexes.isEmpty()) {
+        QMenu menu;
+        for (int index : shiftIndexes) {
+            QAction *editAction = menu.addAction("Edit " + shifts[index].jobTitle);
+            connect(editAction, &QAction::triggered, [this, index]() { this->editShift(index); });
+            QAction *deleteAction = menu.addAction("Delete " + shifts[index].jobTitle);
+            connect(deleteAction, &QAction::triggered, [this, index]() { this->deleteShift(index); });
+        }
+        menu.exec(QCursor::pos());
+    }
 }
 
-void Scheduler::resetAllDateTextFormats() {
-    QDate date = calendar->minimumDate();
-    QDate endDate = calendar->maximumDate();
-    QTextCharFormat defaultFormat;  // Default, no formatting
+void Scheduler::editShift(int index) {
+    // Function to edit a shift at a specific index
+    QDialog dialog(this);
+    dialog.setWindowTitle("Edit Shift");
+    QFormLayout formLayout(&dialog);
 
-    while (date <= endDate) {
-        calendar->setDateTextFormat(date, defaultFormat);
-        date = date.addDays(1);
+    QLineEdit jobTitleEdit;
+    jobTitleEdit.setText(shifts[index].jobTitle);
+    QDateTimeEdit startTimeEdit;
+    startTimeEdit.setDateTime(shifts[index].startTime);
+    startTimeEdit.setCalendarPopup(true);
+    QDateTimeEdit endTimeEdit;
+    endTimeEdit.setDateTime(shifts[index].endTime);
+    endTimeEdit.setCalendarPopup(true);
+
+    formLayout.addRow("Job Title:", &jobTitleEdit);
+    formLayout.addRow("Start Time:", &startTimeEdit);
+    formLayout.addRow("End Time:", &endTimeEdit);
+
+    QPushButton saveButton("Save Changes", &dialog);
+    formLayout.addWidget(&saveButton);
+    connect(&saveButton, &QPushButton::clicked, [&]() {
+        Shift editedShift { jobTitleEdit.text(), startTimeEdit.dateTime(), endTimeEdit.dateTime() };
+        if (!editedShift.jobTitle.isEmpty()) {
+            shifts[index] = editedShift;
+            saveShifts();
+            updateCalendarView();
+            dialog.accept();
+        } else {
+            QMessageBox::warning(&dialog, "Input Error", "Please enter a job title.");
+        }
+    });
+
+    dialog.setLayout(&formLayout);
+    dialog.exec();
+}
+
+void Scheduler::deleteShift(int index) {
+    // Function to delete a shift
+    shifts.removeAt(index);
+    saveShifts();
+    updateCalendarView();
+}
+
+void Scheduler::loadShifts() {
+    QFile file("shifts.json");
+    if (file.open(QIODevice::ReadOnly)) {
+        QByteArray data = file.readAll();
+        QJsonDocument doc(QJsonDocument::fromJson(data));
+        QJsonArray shiftsArray = doc.array();
+        for (auto val : shiftsArray) {
+            QJsonObject obj = val.toObject();
+            Shift shift;
+            shift.jobTitle = obj["jobTitle"].toString();
+            shift.startTime = QDateTime::fromString(obj["startTime"].toString(), Qt::ISODate);
+            shift.endTime = QDateTime::fromString(obj["endTime"].toString(), Qt::ISODate);
+            shifts.append(shift);
+        }
+        file.close();
+        updateCalendarView();  // Make sure to update the calendar view after loading the shifts
+    }
+}
+
+void Scheduler::saveShifts() {
+    QFile file("shifts.json");
+    if (file.open(QIODevice::WriteOnly)) {
+        QJsonArray shiftsArray;
+        for (const auto &shift : shifts) {
+            QJsonObject obj;
+            obj["jobTitle"] = shift.jobTitle;
+            obj["startTime"] = shift.startTime.toString(Qt::ISODate);
+            obj["endTime"] = shift.endTime.toString(Qt::ISODate);
+            shiftsArray.append(obj);
+        }
+        QJsonDocument doc(shiftsArray);
+        file.write(doc.toJson());
+        file.close();
     }
 }

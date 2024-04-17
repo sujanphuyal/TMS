@@ -162,6 +162,7 @@ C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/QFormLayout \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/QLayout \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/QLineEdit \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/QMenu \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/QMessageBox \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/QPushButton \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/QVBoxLayout \
@@ -179,6 +180,7 @@ C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/qlayout.h \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/qlayoutitem.h \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/qlineedit.h \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/qmenu.h \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/qmessagebox.h \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/qpushbutton.h \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/qsizepolicy.h \

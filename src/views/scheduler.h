@@ -11,15 +11,12 @@
 #include <QLineEdit>
 #include <QDateTimeEdit>
 #include <QMessageBox>
+#include <QMenu>
 
 struct Shift {
     QString jobTitle;
     QDateTime startTime;
     QDateTime endTime;
-
-    bool operator==(const Shift& other) const {
-        return jobTitle == other.jobTitle && startTime == other.startTime && endTime == other.endTime;
-    }
 };
 
 class Scheduler : public QWidget {
@@ -28,6 +25,8 @@ class Scheduler : public QWidget {
 public:
     explicit Scheduler(QWidget *parent = nullptr);
     void addShiftDialog();  // Function to open the dialog for adding a new shift
+    void loadShifts();
+    void saveShifts();
 
 private:
     QCalendarWidget *calendar;
@@ -35,9 +34,10 @@ private:
     QVector<Shift> shifts;  // Vector to store shifts
     void setupUI();
     void saveShift(const Shift& newShift);  // Function to save and display new shifts
-    void updateCalendarView();  // Function to update the calendar display
-    void resetDateTextFormat(const QDate& date);  // New method to reset text format for a specific date
-    void resetAllDateTextFormats();  // New method to reset text formats for all dates
+    void updateCalendarView();  // Update the calendar view to reflect shifts
+    void shiftSelected(const QDate &date);  // Handle shift selection from the calendar
+    void editShift(int index);  // Edit a selected shift
+    void deleteShift(int index);  // Delete a selected shift
 };
 
 #endif // SCHEDULER_H
