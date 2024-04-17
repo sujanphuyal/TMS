@@ -13,6 +13,9 @@ class TimeClock : public QWidget {
 public:
     explicit TimeClock(QWidget *parent = nullptr);
 
+signals:
+    void shiftRecorded(const QTime& startTime, const QTime& endTime);
+
 private:
     QPushButton *clockInButton;
     QPushButton *clockOutButton;

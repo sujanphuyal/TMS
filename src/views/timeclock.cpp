@@ -8,7 +8,7 @@ TimeClock::TimeClock(QWidget *parent) : QWidget(parent) {
 void TimeClock::setupUI() {
     auto *layout = new QVBoxLayout(this);
 
-    // Status label to show the current state
+    // Status label
     statusLabel = new QLabel("You are currently clocked out.", this);
     layout->addWidget(statusLabel);
 
@@ -19,7 +19,7 @@ void TimeClock::setupUI() {
 
     // Clock Out button
     clockOutButton = new QPushButton("Clock Out", this);
-    clockOutButton->setEnabled(false);  // Disable until clocked in
+    clockOutButton->setEnabled(false);
     layout->addWidget(clockOutButton);
     connect(clockOutButton, &QPushButton::clicked, this, &TimeClock::clockOut);
 }
@@ -37,5 +37,5 @@ void TimeClock::clockOut() {
     clockOutButton->setEnabled(false);
     clockInButton->setEnabled(true);
 
-    // Here, you would also handle logging the shift duration to the system for hour tracking
+    emit shiftRecorded(shiftStartTime, shiftEndTime);
 }

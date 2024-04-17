@@ -25,11 +25,15 @@ TMSApp::TMSApp(QWidget *parent) : QMainWindow(parent) {
     auto *tabWidget = new QTabWidget(this);
     this->setCentralWidget(tabWidget);
 
+    auto *hourTracker = new HourTracker(tabWidget);
+    auto *timeClock = new TimeClock(tabWidget);
+    connect(timeClock, &TimeClock::shiftRecorded, hourTracker, &HourTracker::addHours);
+
     // Add Dashboard, Scheduler, Hour Tracker, and Time Clock tabs
     tabWidget->addTab(new Dashboard(tabWidget), "Dashboard");
     tabWidget->addTab(new Scheduler(tabWidget), "Scheduler");
-    tabWidget->addTab(new HourTracker(tabWidget), "Hour Tracker");
-    tabWidget->addTab(new TimeClock(tabWidget), "Time Clock");
+    tabWidget->addTab(hourTracker, "Hour Tracker");
+    tabWidget->addTab(timeClock, "Time Clock");
 }
 
 TMSApp::~TMSApp() {
