@@ -9,33 +9,43 @@
 #include <QWidget>
 
 TMSApp::TMSApp(QWidget *parent) : QMainWindow(parent) {
-    // Set the size and title of the main window
     this->resize(800, 600);
     this->setWindowTitle("Time Management System");
 
     // Setup Menu
-    auto *fileMenu = menuBar()->addMenu(tr("&File"));
-    auto *exitAction = fileMenu->addAction(tr("Exit"));
-    connect(exitAction, &QAction::triggered, this, &TMSApp::close);
+    QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
+    QAction *exitAction = fileMenu->addAction(tr("Exit"));
+    connect(exitAction, &QAction::triggered, this, &QMainWindow::close);
 
     // Setup Status Bar
     statusBar()->showMessage("Ready");
 
     // Central Widget with tabs
-    auto *tabWidget = new QTabWidget(this);
-    this->setCentralWidget(tabWidget);
+    QTabWidget *tabWidget = new QTabWidget(this);
+    setCentralWidget(tabWidget);
 
+    // Initialize components
+    auto *dashboard = new Dashboard(tabWidget);
+    auto *scheduler = new Scheduler(tabWidget);
     auto *hourTracker = new HourTracker(tabWidget);
     auto *timeClock = new TimeClock(tabWidget);
-    connect(timeClock, &TimeClock::shiftRecorded, hourTracker, &HourTracker::addHours);
 
-    // Add Dashboard, Scheduler, Hour Tracker, and Time Clock tabs
-    tabWidget->addTab(new Dashboard(tabWidget), "Dashboard");
-    tabWidget->addTab(new Scheduler(tabWidget), "Scheduler");
+    tabWidget->addTab(dashboard, "Dashboard");
+    tabWidget->addTab(scheduler, "Scheduler");
     tabWidget->addTab(hourTracker, "Hour Tracker");
     tabWidget->addTab(timeClock, "Time Clock");
+
+    // Connect signals and slots
+    connect(scheduler, &Scheduler::shiftsUpdated, [dashboard, scheduler]() {
+        int hours = scheduler->calculateWeeklyHours();
+        dashboard->updateHoursWorked(hours);
+    });
+    connect(timeClock, &TimeClock::shiftRecorded, [hourTracker](const QTime& startTime, const QTime& endTime) {
+        hourTracker->addHours(startTime, endTime);
+    });
+
 }
 
 TMSApp::~TMSApp() {
-    // Handle destruction if needed
+    // Cleanup if necessary
 }

@@ -24,7 +24,8 @@ set(SOURCE_FILES
 # Define the executable
 add_executable(TMS ${SOURCE_FILES}
     src/views/hourtracker.h src/views/hourtracker.cpp
-    src/views/timeclock.h src/views/timeclock.cpp)
+    src/views/timeclock.h src/views/timeclock.cpp
+)
 
 # Link libraries
 target_link_libraries(TMS Qt6::Core Qt6::Gui Qt6::Widgets)

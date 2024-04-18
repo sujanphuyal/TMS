@@ -1,4 +1,5 @@
 TMS_autogen/timestamp: \
+  C:/Qt/6.7.0/mingw_64/include/QtCore/QDate \
   C:/Qt/6.7.0/mingw_64/include/QtCore/QTime \
   C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
   C:/Qt/6.7.0/mingw_64/include/QtCore/q20functional.h \

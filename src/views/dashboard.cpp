@@ -1,19 +1,17 @@
 #include "Dashboard.h"
+#include <QVBoxLayout>
 
 Dashboard::Dashboard(QWidget *parent) : QWidget(parent) {
     setupUI();
 }
 
 void Dashboard::setupUI() {
-    auto *layout = new QVBoxLayout(this);
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    hoursLabel = new QLabel("Total Hours Worked This Week: 0", this);
+    hoursLabel->setAlignment(Qt::AlignCenter);
+    layout->addWidget(hoursLabel);
+}
 
-    auto *welcomeLabel = new QLabel("Welcome to Your Dashboard!", this);
-    welcomeLabel->setAlignment(Qt::AlignCenter);
-    layout->addWidget(welcomeLabel);
-
-    auto *infoLabel = new QLabel("Here you can see your upcoming shifts and hours.", this);
-    infoLabel->setAlignment(Qt::AlignCenter);
-    layout->addWidget(infoLabel);
-
-    // This is a placeholder. You will add more UI elements like tables or charts here.
+void Dashboard::updateHoursWorked(int hours) {
+    hoursLabel->setText(QString("Total Hours Worked This Week: %1").arg(hours));
 }

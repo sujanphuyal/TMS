@@ -3,15 +3,15 @@
 
 #include <QWidget>
 #include <QLabel>
-#include <QVBoxLayout>
 
 class Dashboard : public QWidget {
-    Q_OBJECT
-
 public:
     explicit Dashboard(QWidget *parent = nullptr);
 
+    void updateHoursWorked(int hours);  // Method to update hours displayed
+
 private:
+    QLabel *hoursLabel;  // Label to display the hours
     void setupUI();
 };
 

@@ -1,5 +1,6 @@
 C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/TMS_autogen/Z3L7HTGYLD/moc_scheduler.cpp: C:/Users/sujph/OneDrive/Documents/TMS/src/views/scheduler.h \
   C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/TMS_autogen/moc_predefs.h \
+  C:/Qt/6.7.0/mingw_64/include/QtCore/QDate \
   C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
   C:/Qt/6.7.0/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/q20memory.h \
