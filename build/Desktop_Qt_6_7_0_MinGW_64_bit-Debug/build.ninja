@@ -173,7 +173,7 @@ build TMS_autogen/timestamp TMS_autogen/mocs_compilation.cpp | ${cmake_ninja_wor
 #############################################
 # Phony custom command for CMakeFiles\TMS_autogen_timestamp_deps
 
-build CMakeFiles/TMS_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/TMS_autogen_timestamp_deps: phony C$:/Qt/6.7.0/mingw_64/lib/libQt6Core.a C$:/Qt/6.7.0/mingw_64/./bin/moc.exe C$:/Qt/6.7.0/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.7.0/mingw_64/lib/libQt6Gui.a
+build CMakeFiles/TMS_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/TMS_autogen_timestamp_deps: phony C$:/Qt/6.7.0/mingw_64/./bin/moc.exe C$:/Qt/6.7.0/mingw_64/lib/libQt6Core.a C$:/Qt/6.7.0/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.7.0/mingw_64/lib/libQt6Gui.a
 
 
 #############################################

@@ -28,7 +28,7 @@ TMSApp::TMSApp(QWidget *parent) : QMainWindow(parent) {
     auto *dashboard = new Dashboard(tabWidget);
     auto *scheduler = new Scheduler(tabWidget);
     auto *hourTracker = new HourTracker(tabWidget);
-    auto *timeClock = new TimeClock(tabWidget);
+    auto *timeClock = new TimeClock(tabWidget, scheduler);
 
     tabWidget->addTab(dashboard, "Dashboard");
     tabWidget->addTab(scheduler, "Scheduler");

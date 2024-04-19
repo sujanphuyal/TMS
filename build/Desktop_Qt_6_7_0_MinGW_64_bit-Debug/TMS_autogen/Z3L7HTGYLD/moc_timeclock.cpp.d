@@ -1,6 +1,8 @@
 C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/TMS_autogen/Z3L7HTGYLD/moc_timeclock.cpp: C:/Users/sujph/OneDrive/Documents/TMS/src/views/timeclock.h \
   C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/TMS_autogen/moc_predefs.h \
+  C:/Qt/6.7.0/mingw_64/include/QtCore/QDate \
   C:/Qt/6.7.0/mingw_64/include/QtCore/QTime \
+  C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
   C:/Qt/6.7.0/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/q20memory.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/q20type_traits.h \
@@ -75,6 +77,7 @@ C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/
   C:/Qt/6.7.0/mingw_64/include/QtCore/qprocessordetection.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qrect.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qrefcount.h \
+  C:/Qt/6.7.0/mingw_64/include/QtCore/qregularexpression.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qscopedpointer.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qscopeguard.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qset.h \
@@ -106,6 +109,7 @@ C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/
   C:/Qt/6.7.0/mingw_64/include/QtCore/qtdeprecationmarkers.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qtenvironmentvariables.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qtextstream.h \
+  C:/Qt/6.7.0/mingw_64/include/QtCore/qtimezone.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qtmetamacros.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qtnoop.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qtpreprocessorsupport.h \
@@ -120,6 +124,7 @@ C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/
   C:/Qt/6.7.0/mingw_64/include/QtCore/qutf8stringview.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qvariant.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qvarlengtharray.h \
+  C:/Qt/6.7.0/mingw_64/include/QtCore/qvector.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qversiontagging.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qxptype_traits.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qyieldcpu.h \
@@ -136,6 +141,7 @@ C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/
   C:/Qt/6.7.0/mingw_64/include/QtGui/qkeysequence.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qpaintdevice.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qpalette.h \
+  C:/Qt/6.7.0/mingw_64/include/QtGui/qpen.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qpicture.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qpixelformat.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qpixmap.h \
@@ -143,24 +149,45 @@ C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/
   C:/Qt/6.7.0/mingw_64/include/QtGui/qregion.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qrgb.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qrgba64.h \
+  C:/Qt/6.7.0/mingw_64/include/QtGui/qtextcursor.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qtextdocument.h \
+  C:/Qt/6.7.0/mingw_64/include/QtGui/qtextformat.h \
+  C:/Qt/6.7.0/mingw_64/include/QtGui/qtextoption.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qtgui-config.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qtguiexports.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qtguiglobal.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qtransform.h \
+  C:/Qt/6.7.0/mingw_64/include/QtGui/qvalidator.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/QCalendarWidget \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/QDateTimeEdit \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/QDialog \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/QFormLayout \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/QLabel \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/QLayout \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/QLineEdit \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/QMenu \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/QMessageBox \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/QPushButton \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/QVBoxLayout \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/QWidget \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/qabstractbutton.h \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/qabstractspinbox.h \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/qboxlayout.h \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/qcalendarwidget.h \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/qdatetimeedit.h \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/qdialog.h \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/qformlayout.h \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/qframe.h \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/qgridlayout.h \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/qlabel.h \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/qlayout.h \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/qlayoutitem.h \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/qlineedit.h \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/qmenu.h \
+  C:/Qt/6.7.0/mingw_64/include/QtWidgets/qmessagebox.h \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/qpushbutton.h \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/qsizepolicy.h \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/qtwidgets-config.h \
@@ -365,4 +392,5 @@ C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/sys/types.h \
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/time.h \
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/vadefs.h \
-  C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h
+  C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h \
+  C:/Users/sujph/OneDrive/Documents/TMS/src/views/Scheduler.h

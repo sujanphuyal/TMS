@@ -93,7 +93,7 @@ void Scheduler::updateCalendarView() {
 }
 
 void Scheduler::shiftSelected(const QDate &date) {
-     selectedDate = date;  // Save the selected date
+    selectedDate = date;  // Save the selected date
     // Find shifts for the selected date
     QVector<int> shiftIndexes;
     for (int i = 0; i < shifts.size(); ++i) {
@@ -218,3 +218,12 @@ int Scheduler::calculateWeeklyHours() {
     return totalHours;
 }
 
+QVector<Shift> Scheduler::getShiftsForDate(const QDate& date) {
+    QVector<Shift> result;
+    for (const Shift& shift : shifts) {
+        if (shift.startTime.date() == date) {
+            result.push_back(shift);
+        }
+    }
+    return result;
+}

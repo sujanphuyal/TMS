@@ -1,15 +1,15 @@
 #include "TimeClock.h"
 #include <QDateTime>
 
-TimeClock::TimeClock(QWidget *parent) : QWidget(parent) {
+TimeClock::TimeClock(QWidget *parent, Scheduler* schedulerRef) : QWidget(parent), scheduler(schedulerRef) {
     setupUI();
 }
 
 void TimeClock::setupUI() {
-    auto *layout = new QVBoxLayout(this);
+    QVBoxLayout *layout = new QVBoxLayout(this);
 
     // Status label
-    statusLabel = new QLabel("You are currently clocked out.", this);
+    statusLabel = new QLabel("Status: Clocked Out", this);
     layout->addWidget(statusLabel);
 
     // Clock In button
@@ -22,6 +22,8 @@ void TimeClock::setupUI() {
     clockOutButton->setEnabled(false);
     layout->addWidget(clockOutButton);
     connect(clockOutButton, &QPushButton::clicked, this, &TimeClock::clockOut);
+
+    displayShifts();  // Call to display shifts
 }
 
 void TimeClock::clockIn() {
@@ -39,3 +41,22 @@ void TimeClock::clockOut() {
 
     emit shiftRecorded(shiftStartTime, shiftEndTime);
 }
+
+void TimeClock::displayShifts() {
+    QDateTime now = QDateTime::currentDateTime();
+    auto shifts = scheduler->getShiftsForDate(now.date());  // Assuming getShiftsForDate is implemented in Scheduler
+
+    for (const auto &shift : shifts) {
+        QString status;
+        if (shift.endTime < now) {
+            status = "Finished";
+        } else if (shift.startTime > now) {
+            status = "Upcoming";
+        } else {
+            status = "Running";
+        }
+        QLabel* shiftLabel = new QLabel(QString("Shift: %1 - %2, Status: %3").arg(shift.startTime.toString(), shift.endTime.toString(), status), this);
+        this->layout()->addWidget(shiftLabel);
+    }
+}
+

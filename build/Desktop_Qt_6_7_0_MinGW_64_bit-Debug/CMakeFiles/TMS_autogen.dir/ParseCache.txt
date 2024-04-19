@@ -771,7 +771,9 @@ C:/Users/sujph/OneDrive/Documents/TMS/src/views/scheduler.cpp
 C:/Users/sujph/OneDrive/Documents/TMS/src/views/hourtracker.cpp
 C:/Users/sujph/OneDrive/Documents/TMS/src/views/timeclock.h
  mmc:Q_OBJECT
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/QDate
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/QTime
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/QVector
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/q20functional.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/q20memory.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/q20type_traits.h
@@ -846,6 +848,7 @@ C:/Users/sujph/OneDrive/Documents/TMS/src/views/timeclock.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qprocessordetection.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qrect.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qrefcount.h
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qregularexpression.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qscopedpointer.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qscopeguard.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qset.h
@@ -877,6 +880,7 @@ C:/Users/sujph/OneDrive/Documents/TMS/src/views/timeclock.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qtdeprecationmarkers.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qtenvironmentvariables.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qtextstream.h
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qtimezone.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qtmetamacros.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qtnoop.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qtpreprocessorsupport.h
@@ -891,6 +895,7 @@ C:/Users/sujph/OneDrive/Documents/TMS/src/views/timeclock.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qutf8stringview.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qvariant.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qvarlengtharray.h
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qvector.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qversiontagging.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qxptype_traits.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtCore/qyieldcpu.h
@@ -907,6 +912,7 @@ C:/Users/sujph/OneDrive/Documents/TMS/src/views/timeclock.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qkeysequence.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qpaintdevice.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qpalette.h
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qpen.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qpicture.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qpixelformat.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qpixmap.h
@@ -914,24 +920,45 @@ C:/Users/sujph/OneDrive/Documents/TMS/src/views/timeclock.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qregion.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qrgb.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qrgba64.h
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qtextcursor.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qtextdocument.h
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qtextformat.h
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qtextoption.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qtgui-config.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qtguiexports.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qtguiglobal.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qtransform.h
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qvalidator.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qwindowdefs.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtGui/qwindowdefs_win.h
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/QCalendarWidget
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/QDateTimeEdit
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/QDialog
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/QFormLayout
  mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/QLabel
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/QLayout
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/QLineEdit
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/QMenu
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/QMessageBox
  mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/QPushButton
  mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/QVBoxLayout
  mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/QWidget
  mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qabstractbutton.h
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qabstractspinbox.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qboxlayout.h
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qcalendarwidget.h
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qdatetimeedit.h
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qdialog.h
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qdialogbuttonbox.h
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qformlayout.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qframe.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qgridlayout.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qlabel.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qlayout.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qlayoutitem.h
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qlineedit.h
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qmenu.h
+ mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qmessagebox.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qpushbutton.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qsizepolicy.h
  mdp:C:/Qt/6.7.0/mingw_64/include/QtWidgets/qtwidgets-config.h
@@ -1138,6 +1165,7 @@ C:/Users/sujph/OneDrive/Documents/TMS/src/views/timeclock.h
  mdp:C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/vadefs.h
  mdp:C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h
  mdp:C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/TMS_autogen/moc_predefs.h
+ mdp:C:/Users/sujph/OneDrive/Documents/TMS/src/views/scheduler.h
  mdp:C:/Users/sujph/OneDrive/Documents/TMS/src/views/timeclock.h
 C:/Users/sujph/OneDrive/Documents/TMS/src/views/timeclock.cpp
 C:/Users/sujph/OneDrive/Documents/TMS/src/models/shiftmodel.h

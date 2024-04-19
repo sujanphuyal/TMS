@@ -25,6 +25,7 @@ class Scheduler : public QWidget {
 
 public:
     explicit Scheduler(QWidget *parent = nullptr);
+    QVector<Shift> getShiftsForDate(const QDate& date);
     int calculateWeeklyHours();  // Calculate hours for the current week
     void loadShifts();
     void saveShifts();
