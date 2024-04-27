@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "TMS",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "TMS::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TMS-Debug-08c7b209b137a9bf63f7.json",
+					"name" : "TMS",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TMS_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TMS_autogen-Debug-e83c3c5ffdfb2d542a45.json",
+					"name" : "TMS_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TMS_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TMS_autogen_timestamp_deps-Debug-1c7be1063aab3afb0229.json",
+					"name" : "TMS_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/sujph/OneDrive/Documents/TMS/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug",
+		"source" : "C:/Users/sujph/OneDrive/Documents/TMS"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

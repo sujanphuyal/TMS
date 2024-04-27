@@ -86,7 +86,7 @@ void Scheduler::saveShift(const Shift& newShift) {
 void Scheduler::updateCalendarView() {
     // Update the calendar display for shifts
     QTextCharFormat format;
-    format.setBackground(Qt::yellow);
+    format.setBackground(Qt::blue);
     for (const auto &shift : shifts) {
         calendar->setDateTextFormat(shift.startTime.date(), format);
     }
@@ -226,4 +226,30 @@ QVector<Shift> Scheduler::getShiftsForDate(const QDate& date) {
         }
     }
     return result;
+}
+
+void Scheduler::saveWeeklyHours() {
+    QFile file("weekly_hours.json");
+    if (file.open(QIODevice::WriteOnly)) {
+        QJsonObject root;
+        for (auto it = weeklyHours.begin(); it != weeklyHours.end(); ++it) {
+            root[it.key().toString("yyyy-MM-dd")] = it.value();
+        }
+        QJsonDocument doc(root);
+        file.write(doc.toJson());
+        file.close();
+    }
+}
+
+void Scheduler::loadWeeklyHours() {
+    QFile file("weekly_hours.json");
+    if (file.open(QIODevice::ReadOnly)) {
+        QByteArray data = file.readAll();
+        QJsonDocument doc(QJsonDocument::fromJson(data));
+        QJsonObject root = doc.object();
+        for (auto it = root.begin(); it != root.end(); ++it) {
+            weeklyHours[QDate::fromString(it.key(), "yyyy-MM-dd")] = it.value().toInt();
+        }
+        file.close();
+    }
 }

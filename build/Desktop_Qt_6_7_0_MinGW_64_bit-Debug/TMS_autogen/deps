@@ -1,6 +1,8 @@
 TMS_autogen/timestamp: \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/QDate \
+	C:/Qt/6.7.0/mingw_64/include/QtCore/QObject \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/QTime \
+	C:/Qt/6.7.0/mingw_64/include/QtCore/QTimer \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/q20functional.h \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/q20memory.h \
@@ -15,6 +17,7 @@ TMS_autogen/timestamp: \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/qatomic.h \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/qatomic_cxx11.h \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/qbasicatomic.h \
+	C:/Qt/6.7.0/mingw_64/include/QtCore/qbasictimer.h \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/qbindingstorage.h \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/qbytearray.h \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/qbytearrayalgorithms.h \
@@ -108,6 +111,7 @@ TMS_autogen/timestamp: \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/qtdeprecationmarkers.h \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/qtenvironmentvariables.h \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/qtextstream.h \
+	C:/Qt/6.7.0/mingw_64/include/QtCore/qtimer.h \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/qtimezone.h \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/qtmetamacros.h \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/qtnoop.h \
@@ -300,6 +304,15 @@ TMS_autogen/timestamp: \
 	C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargets-relwithdebinfo.cmake \
 	C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargets.cmake \
 	C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6GuiTools/Qt6GuiToolsVersionlessTargets.cmake \
+	C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6PrintSupport/Qt6PrintSupportAdditionalTargetInfo.cmake \
+	C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6PrintSupport/Qt6PrintSupportConfig.cmake \
+	C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6PrintSupport/Qt6PrintSupportConfigVersion.cmake \
+	C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6PrintSupport/Qt6PrintSupportConfigVersionImpl.cmake \
+	C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6PrintSupport/Qt6PrintSupportDependencies.cmake \
+	C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6PrintSupport/Qt6PrintSupportPlugins.cmake \
+	C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6PrintSupport/Qt6PrintSupportTargets-relwithdebinfo.cmake \
+	C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6PrintSupport/Qt6PrintSupportTargets.cmake \
+	C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6PrintSupport/Qt6PrintSupportVersionlessTargets.cmake \
 	C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginAdditionalTargetInfo.cmake \
 	C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginConfig.cmake \
 	C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginTargets-relwithdebinfo.cmake \
@@ -578,6 +591,8 @@ TMS_autogen/timestamp: \
 	C:/Users/sujph/OneDrive/Documents/TMS/src/views/dashboard.h \
 	C:/Users/sujph/OneDrive/Documents/TMS/src/views/hourtracker.cpp \
 	C:/Users/sujph/OneDrive/Documents/TMS/src/views/hourtracker.h \
+	C:/Users/sujph/OneDrive/Documents/TMS/src/views/notificationmanager.cpp \
+	C:/Users/sujph/OneDrive/Documents/TMS/src/views/notificationmanager.h \
 	C:/Users/sujph/OneDrive/Documents/TMS/src/views/scheduler.cpp \
 	C:/Users/sujph/OneDrive/Documents/TMS/src/views/scheduler.h \
 	C:/Users/sujph/OneDrive/Documents/TMS/src/views/timeclock.cpp \

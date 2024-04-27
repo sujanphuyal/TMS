@@ -7,6 +7,7 @@ set(CMAKE_AUTOMOC ON)
 
 # Find the necessary Qt packages
 find_package(Qt6 COMPONENTS Core Gui Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Widgets Core Gui PrintSupport REQUIRED)
 
 # Include directories
 include_directories(${PROJECT_SOURCE_DIR}/include)
@@ -25,7 +26,9 @@ set(SOURCE_FILES
 add_executable(TMS ${SOURCE_FILES}
     src/views/hourtracker.h src/views/hourtracker.cpp
     src/views/timeclock.h src/views/timeclock.cpp
+    src/views/notificationmanager.h src/views/notificationmanager.cpp
+
 )
 
 # Link libraries
-target_link_libraries(TMS Qt6::Core Qt6::Gui Qt6::Widgets)
+target_link_libraries(TMS Qt6::Core Qt6::Gui Qt6::Widgets Qt6::PrintSupport)

@@ -59,4 +59,3 @@ void TimeClock::displayShifts() {
         this->layout()->addWidget(shiftLabel);
     }
 }
-
