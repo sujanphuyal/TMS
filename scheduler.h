@@ -47,7 +47,7 @@ private:
     QCalendarWidget *calendar;
     QPushButton *addShiftButton;
     QVector<Shift> shifts;  // Vector to store shifts
-     QMap<QDate, int> weeklyHours;  // Map from week start date to hours worked that week
+    QMap<QDate, int> weeklyHours;  // Map from week start date to hours worked that week
     QDate selectedDate;     // Store the selected date from the calendar
     void setupUI();
     void saveShift(const Shift& newShift);  // Function to save and display new shifts

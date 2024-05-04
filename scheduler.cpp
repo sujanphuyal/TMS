@@ -84,13 +84,21 @@ void Scheduler::saveShift(const Shift& newShift) {
 }
 
 void Scheduler::updateCalendarView() {
-    // Update the calendar display for shifts
-    QTextCharFormat format;
-    format.setBackground(Qt::blue);
-    for (const auto &shift : shifts) {
-        calendar->setDateTextFormat(shift.startTime.date(), format);
+    QTextCharFormat clearFormat;  // Default, no formatting
+    QTextCharFormat shiftFormat;
+    shiftFormat.setBackground(Qt::blue);  // Or any color that marks the shift
+
+    // Clear all formats initially
+    for (QDate date = calendar->minimumDate(); date <= calendar->maximumDate(); date = date.addDays(1)) {
+        calendar->setDateTextFormat(date, clearFormat);
+    }
+
+    // Apply color to dates with shifts
+    for (const Shift &shift : shifts) {
+        calendar->setDateTextFormat(shift.startTime.date(), shiftFormat);
     }
 }
+
 
 void Scheduler::shiftSelected(const QDate &date) {
     selectedDate = date;  // Save the selected date
@@ -153,12 +161,30 @@ void Scheduler::editShift(int index) {
 }
 
 void Scheduler::deleteShift(int index) {
-    // Function to delete a shift
+    if (index < 0 || index >= shifts.size()) return;  // Safety check
+
+    QDate dateOfDeletedShift = shifts[index].startTime.date();
     shifts.removeAt(index);
-    saveShifts();
-    updateCalendarView();
-    emit shiftsUpdated();  // Emit signal after updating shifts
+    emit shiftsUpdated();  // Notify that shifts have been updated
+
+    // Check if there are any shifts left on this date
+    bool shiftsRemaining = false;
+    for (const Shift &shift : shifts) {
+        if (shift.startTime.date() == dateOfDeletedShift) {
+            shiftsRemaining = true;
+            break;
+        }
+    }
+
+    if (!shiftsRemaining) {
+        // If no shifts remain on this date, remove the color
+        calendar->setDateTextFormat(dateOfDeletedShift, QTextCharFormat());
+    }
+
+    saveShifts();    // Save the updated shifts list
+    updateCalendarView();  // Update calendar display
 }
+
 
 void Scheduler::loadShifts() {
     QFile file("shifts.json");
