@@ -16,7 +16,7 @@ Dashboard::Dashboard(QWidget *parent, Scheduler* schedulerRef)
 
 void Dashboard::setupUI() {
     QVBoxLayout *layout = new QVBoxLayout(this);
-    hoursLabel = new QLabel("Total Hours Worked This Week: 0", this);
+    hoursLabel = new QLabel("Total Hours Allocated This Week: 0", this);
     hoursLabel->setAlignment(Qt::AlignCenter);
     layout->addWidget(hoursLabel);
 
@@ -61,7 +61,7 @@ void Dashboard::updateShiftsDisplay() {
 
 void Dashboard::updateHoursWorked(int hours) {
     totalHoursWorked = hours;
-    hoursLabel->setText(QString("Total Hours Worked This Week: %1").arg(hours));
+    hoursLabel->setText(QString("Total Hours Allocated This Week: %1").arg(hours));
     saveHoursWorked();  // Save hours whenever they are updated
 }
 

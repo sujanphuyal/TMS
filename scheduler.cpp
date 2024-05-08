@@ -59,15 +59,33 @@ void Scheduler::addShiftDialog() {
     dialog.exec();
 }
 
+int Scheduler::calculateWeeklyHours() {
+    return calculateWeeklyHours(QDate::currentDate());
+}
+
+int Scheduler::calculateWeeklyHours(QDate date) {
+    int totalMinutes = 0;
+    QDate startOfWeek = date.addDays(-date.dayOfWeek() + 1);
+
+    for (const auto &shift : shifts) {
+        QDate shiftDate = shift.startTime.date();
+        if (shiftDate >= startOfWeek && shiftDate < startOfWeek.addDays(7)) {
+            totalMinutes += shift.startTime.secsTo(shift.endTime) / 60;
+        }
+    }
+    return totalMinutes / 60;
+}
+
 void Scheduler::saveShift(const Shift& newShift) {
-    // Calculate the total hours including the new shift
     int additionalMinutes = newShift.startTime.secsTo(newShift.endTime) / 60;
-    int projectedHours = (calculateWeeklyHours() * 60 + additionalMinutes) / 60;
+    int projectedHours = calculateWeeklyHours(newShift.startTime.date()) + additionalMinutes / 60;
 
     if (projectedHours > 24) {
         QMessageBox::warning(this, "Shift Limit Exceeded", "Adding this shift would exceed the 24-hour limit for the week.");
-        return;  // Do not add the shift if it exceeds the limit
-    }
+        return;
+    }else if (projectedHours >= 22 && projectedHours < 24) {  // Alert two hours before reaching the limit
+                 QMessageBox::warning(nullptr, "Weekly Hour Limit Approaching", "You are close to exceeding the 24-hour work limit this week.");
+             }
 
     // Check for conflicts before adding the shift
     for (const auto &shift : shifts) {
@@ -78,7 +96,7 @@ void Scheduler::saveShift(const Shift& newShift) {
     }
 
     shifts.append(newShift);
-    emit shiftsUpdated();  // Emit signal after updating shifts
+    emit shiftsUpdated();
     saveShifts();
     updateCalendarView();
 }
@@ -222,28 +240,6 @@ void Scheduler::saveShifts() {
     }
 }
 
-int Scheduler::calculateWeeklyHours() {
-    int totalMinutes = 0;
-    QDateTime now = QDateTime::currentDateTime();
-    QDate startOfWeek = QDate::currentDate().addDays(-QDate::currentDate().dayOfWeek() + 1);
-
-    for (const auto &shift : shifts) {
-        if (shift.startTime.date() >= startOfWeek && shift.endTime <= now) {
-            totalMinutes += shift.startTime.secsTo(shift.endTime) / 60;
-        }
-    }
-    int totalHours = totalMinutes / 60;
-
-    // Emit alert if hours are about to exceed or have exceeded the limit
-    if (totalHours >= 24) {
-        QMessageBox::critical(nullptr, "Weekly Hour Limit Exceeded", "You have exceeded the maximum of 24 work hours this week.");
-    } else if (totalHours >= 22) {  // Alert two hours before reaching the limit
-        QMessageBox::warning(nullptr, "Weekly Hour Limit Approaching", "You are close to exceeding the 24-hour work limit this week.");
-    }
-
-    return totalHours;
-}
-
 QVector<Shift> Scheduler::getShiftsForDate(const QDate& date) {
     QVector<Shift> result;
     for (const Shift& shift : shifts) {
@@ -253,6 +249,18 @@ QVector<Shift> Scheduler::getShiftsForDate(const QDate& date) {
     }
     return result;
 }
+
+QVector<Shift> Scheduler::getShiftsInRange(QDate from, QDate to) {
+    QVector<Shift> result;
+    for (const Shift& shift : shifts) {
+        if (shift.startTime.date() >= from && shift.startTime.date() <= to) {
+            result.push_back(shift);
+        }
+    }
+    return result;
+}
+
+
 
 QVector<Shift> Scheduler::getAllShifts() const {
     return shifts;  // 'shifts' is the QVector holding the shift data

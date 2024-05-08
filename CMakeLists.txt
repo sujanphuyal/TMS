@@ -32,6 +32,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         notificationmanager.h notificationmanager.cpp
         scheduler.h scheduler.cpp
         timeclock.h timeclock.cpp
+        reportgenerator.h reportgenerator.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET TMS APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

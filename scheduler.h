@@ -31,13 +31,16 @@ class Scheduler : public QWidget {
 public:
     explicit Scheduler(QWidget *parent = nullptr);
     QVector<Shift> getShiftsForDate(const QDate& date);
-    int calculateWeeklyHours();  // Calculate hours for the current week
+    int calculateWeeklyHours();  // Calculate for current week by default
+    int calculateWeeklyHours(QDate date);  // Calculate hours for the current week
     void loadShifts();
     void saveShifts();
     void addShiftDialog();  // Function to open the dialog for adding a new shift
     void saveWeeklyHours();   // Save weekly hours to file
     void loadWeeklyHours();   // Load weekly hours from file
     QVector<Shift> getAllShifts() const;  // Method to retrieve all shifts
+    QVector<Shift> getShiftsInRange(QDate from, QDate to);
+
 
 
 signals:
