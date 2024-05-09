@@ -61,29 +61,55 @@ void TimeClock::clockOut() {
 
 void TimeClock::displayShifts() {
     QDateTime now = QDateTime::currentDateTime();
-    auto shifts = scheduler->getShiftsForDate(now.date());
+    auto shifts = scheduler->getShiftsForDate(now.date());  // Fetch shifts for the current date
 
+    QVector<Shift> ongoingShifts;
+    QVector<Shift> upcomingShifts;
+    QVector<Shift> completedShifts;
+
+    // Categorize shifts
+    for (const auto &shift : shifts) {
+        if (shift.endTime < now) {
+            completedShifts.append(shift);
+        } else if (shift.startTime <= now && shift.endTime >= now) {
+            ongoingShifts.append(shift);
+        } else if (shift.startTime > now) {
+            upcomingShifts.append(shift);
+        }
+    }
+
+    // Sort each category by start time
+    auto sortByStartTime = [](const Shift& a, const Shift& b) { return a.startTime < b.startTime; };
+    std::sort(ongoingShifts.begin(), ongoingShifts.end(), sortByStartTime);
+    std::sort(upcomingShifts.begin(), upcomingShifts.end(), sortByStartTime);
+    std::sort(completedShifts.begin(), completedShifts.end(), sortByStartTime);
+
+    // Merge the sorted lists
+    QVector<Shift> sortedShifts = ongoingShifts + upcomingShifts + completedShifts;
+
+    // Populate the table
     shiftsTable->clearContents();
     shiftsTable->setRowCount(0);
 
-    for (const auto &shift : shifts) {
+    for (int i = 0; i < sortedShifts.size(); ++i) {
+        const auto& shift = sortedShifts[i];
         int row = shiftsTable->rowCount();
         shiftsTable->insertRow(row);
-        shiftsTable->setItem(row, 0, new QTableWidgetItem(shift.jobTitle));  // Display Shift Title
-        shiftsTable->setItem(row, 1, new QTableWidgetItem(shift.startTime.toString("hh:mm AP")));  // 12-hour format with AM/PM
+        shiftsTable->setItem(row, 0, new QTableWidgetItem(shift.jobTitle));
+        shiftsTable->setItem(row, 1, new QTableWidgetItem(shift.startTime.toString("hh:mm AP")));
         shiftsTable->setItem(row, 2, new QTableWidgetItem(shift.endTime.toString("hh:mm AP")));
 
         QString status;
         QColor color; // Color for row based on status
         if (shift.endTime < now) {
-            status = "Finished";
-            color = QColor(Qt::green); // Green for completed shifts
+            status = "Completed";
+            color = QColor(Qt::green);
         } else if (shift.startTime <= now && shift.endTime >= now) {
             status = "Ongoing";
-            color = QColor(Qt::yellow); // Yellow for ongoing shifts
+            color = QColor(Qt::yellow);
         } else {
             status = "Upcoming";
-            color = QColor(Qt::blue); // Blue for upcoming shifts
+            color = QColor(Qt::blue);
         }
 
         shiftsTable->setItem(row, 3, new QTableWidgetItem(status));
