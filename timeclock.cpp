@@ -1,10 +1,11 @@
 #include "TimeClock.h"
 #include <QDateTime>
+#include <QTableWidget>
+#include <QHeaderView>
 
 TimeClock::TimeClock(QWidget *parent, Scheduler* schedulerRef) : QWidget(parent), scheduler(schedulerRef) {
     setupUI();
 }
-
 void TimeClock::setupUI() {
     QVBoxLayout *mainLayout = new QVBoxLayout(this);  // Main layout
 
@@ -28,23 +29,30 @@ void TimeClock::setupUI() {
 
     mainLayout->addLayout(controlLayout);  // Add control layout to main layout
 
-    // Layout for displaying shifts (dynamic content)
-    layout = new QVBoxLayout();
-    mainLayout->addLayout(layout);  // Add shift layout to main layout
+    // Initialize the table for displaying shifts
+    shiftsTable = new QTableWidget(this);
+    shiftsTable->setColumnCount(4); // Now includes columns for Shift Title, Start Time, End Time, Status
+    shiftsTable->setHorizontalHeaderLabels(QStringList() << "Shift Title" << "Start Time" << "End Time" << "Status");
+    shiftsTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    shiftsTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    shiftsTable->setSelectionMode(QAbstractItemView::NoSelection);
+    mainLayout->addWidget(shiftsTable);  // Add table to main layout
 
     displayShifts();  // Call to display shifts
 }
 
 void TimeClock::clockIn() {
     shiftStartTime = QTime::currentTime();
-    statusLabel->setText("Clocked in at: " + shiftStartTime.toString("hh:mm:ss"));
+    statusLabel->setText("Clocked in at: " + shiftStartTime.toString("hh:mm AP"));
     clockInButton->setEnabled(false);
     clockOutButton->setEnabled(true);
 }
 
 void TimeClock::clockOut() {
     shiftEndTime = QTime::currentTime();
-    statusLabel->setText("Clocked out at: " + shiftEndTime.toString("hh:mm:ss"));
+    QString message = "Clocked in at: " + shiftStartTime.toString("hh:mm AP") +
+                      " | Clocked out at: " + shiftEndTime.toString("hh:mm AP");
+    statusLabel->setText(message);
     clockOutButton->setEnabled(false);
     clockInButton->setEnabled(true);
 
@@ -55,19 +63,33 @@ void TimeClock::displayShifts() {
     QDateTime now = QDateTime::currentDateTime();
     auto shifts = scheduler->getShiftsForDate(now.date());
 
-    clearShiftDisplay();  // Clear the existing display before updating
+    shiftsTable->clearContents();
+    shiftsTable->setRowCount(0);
 
     for (const auto &shift : shifts) {
+        int row = shiftsTable->rowCount();
+        shiftsTable->insertRow(row);
+        shiftsTable->setItem(row, 0, new QTableWidgetItem(shift.jobTitle));  // Display Shift Title
+        shiftsTable->setItem(row, 1, new QTableWidgetItem(shift.startTime.toString("hh:mm AP")));  // 12-hour format with AM/PM
+        shiftsTable->setItem(row, 2, new QTableWidgetItem(shift.endTime.toString("hh:mm AP")));
+
         QString status;
+        QColor color; // Color for row based on status
         if (shift.endTime < now) {
             status = "Finished";
-        } else if (shift.startTime > now) {
-            status = "Upcoming";
+            color = QColor(Qt::green); // Green for completed shifts
+        } else if (shift.startTime <= now && shift.endTime >= now) {
+            status = "Ongoing";
+            color = QColor(Qt::yellow); // Yellow for ongoing shifts
         } else {
-            status = "Running";
+            status = "Upcoming";
+            color = QColor(Qt::blue); // Blue for upcoming shifts
         }
-        QLabel* shiftLabel = new QLabel(QString("Shift: %1 - %2, Status: %3").arg(shift.startTime.toString(), shift.endTime.toString(), status), this);
-        layout->addWidget(shiftLabel);
+
+        shiftsTable->setItem(row, 3, new QTableWidgetItem(status));
+        for (int j = 0; j < shiftsTable->columnCount(); ++j) {
+            shiftsTable->item(row, j)->setBackground(color);
+        }
     }
 }
 

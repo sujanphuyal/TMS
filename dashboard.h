@@ -3,8 +3,8 @@
 
 #include <QWidget>
 #include <QLabel>
+#include <QVBoxLayout>
 #include <QTableWidget>
-#include <QString>
 #include "Scheduler.h"
 
 class Dashboard : public QWidget {
@@ -17,12 +17,11 @@ public:
 
 private:
     QLabel *hoursLabel;
-    QVBoxLayout *shiftsLayout;  // Layout to display shifts information
+    QTableWidget *shiftsTable;   // Table to display shifts
     int totalHoursWorked = 0;  // Store total hours worked
     Scheduler* scheduler;       // Reference to the Scheduler
     QString hoursFilePath = "hours_worked.json";  // File path for storing hours
 
     void setupUI();
-    void setupShiftsDisplay();  // Set up the UI part that displays shifts
 };
 #endif // DASHBOARD_H

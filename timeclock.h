@@ -7,6 +7,7 @@
 #include <QTime>
 #include <QVBoxLayout>
 #include <QVector>
+#include <QTableWidget>
 #include "Scheduler.h"
 
 class TimeClock : public QWidget {
@@ -29,6 +30,7 @@ private:
     QTime shiftEndTime;
     Scheduler* scheduler;  // Pointer to the scheduler to access shifts
     QVBoxLayout *layout;   // Layout for displaying shift information
+    QTableWidget *shiftsTable;  // Table to display shifts
     void setupUI();
     void clockIn();
     void clockOut();
